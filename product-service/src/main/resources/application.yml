@@ -1,0 +1,38 @@
+server:
+  port: 9600
+  tomcat:
+    accesslog:
+      enabled: true
+      encoding: UTF-8
+    connection-timeout: 10000
+    max-connections: 10000
+    threads:
+      max: 3000
+      min-spare: 100
+
+spring:
+  application:
+    name: product-service
+  data:
+    mongodb:
+      host: localhost
+      username: saber66
+      password: AdminSaber66
+      port: 27017
+      database: mydb
+
+service:
+  baseUrl: "/api/product"
+  swagger:
+    version: 'version1.0.0-1403/03/26'
+    title: 'product service'
+    description: 'product service'
+
+springdoc:
+  swagger-ui:
+    display-request-duration: true
+    display-operation-id: true
+    tags-sorter: alpha
+    path: /swagger-ui.html
+  api-docs:
+    path: ${service.baseUrl}/v3/api-docs
