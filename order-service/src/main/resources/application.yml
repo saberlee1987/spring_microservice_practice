@@ -1,0 +1,53 @@
+server:
+  port: 9601
+  tomcat:
+    accesslog:
+      enabled: true
+      encoding: UTF-8
+    connection-timeout: 10000
+    max-connections: 10000
+    threads:
+      max: 3000
+      min-spare: 100
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test2
+    username: saber66
+    password: AdminSaber66
+    hikari:
+      connection-timeout: 10000
+      idle-timeout: 10000
+      minimum-idle: 3
+      maximum-pool-size: 6
+      max-lifetime: 10000
+      schema: test2
+
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+service:
+  baseUrl: "/api/order"
+  swagger:
+    version: 'version1.0.0-1403/03/27'
+    title: 'order service'
+    description: 'order service'
+
+springdoc:
+  swagger-ui:
+    display-request-duration: true
+    display-operation-id: true
+    tags-sorter: alpha
+    path: /swagger-ui.html
+  api-docs:
+    path: ${service.baseUrl}/v3/api-docs
