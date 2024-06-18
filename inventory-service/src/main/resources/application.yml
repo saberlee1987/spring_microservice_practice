@@ -1,5 +1,5 @@
 server:
-  port: 9601
+  port: 9602
   tomcat:
     accesslog:
       enabled: true
@@ -36,18 +36,12 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-  restTemplate:
-    connectTimeout : 10000
-    readTimeout : 10000
-    totalConnection : 7000
-    connectionPerRoute : 1000
-
 service:
-  baseUrl: "/api/order"
+  baseUrl: "/api/inventory"
   swagger:
-    version: 'version1.0.0-1403/03/27'
-    title: 'order service'
-    description: 'order service'
+    version: 'version1.0.0-1403/03/29'
+    title: 'inventory service'
+    description: 'inventory service'
 
 springdoc:
   swagger-ui:

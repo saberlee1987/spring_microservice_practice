@@ -6,9 +6,9 @@
         <artifactId>spring_microservice_practice</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>order-service</artifactId>
-    <name>order-service</name>
+    <artifactId>inventory-service</artifactId>
     <packaging>jar</packaging>
+    <name>inventory-service</name>
     <properties>
         <querydsl.version>5.0.0</querydsl.version>
         <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
@@ -17,7 +17,6 @@
         <jdbc.password>AdminSaber66</jdbc.password>
         <jdbc.schema>test2</jdbc.schema>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,13 +32,6 @@
             <scope>runtime</scope>
             <version>8.0.33</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
-        <dependency>
-            <groupId>org.apache.httpcomponents.client5</groupId>
-            <artifactId>httpclient5</artifactId>
-            <version>5.3.1</version>
-        </dependency>
-
         <!--        <query dsl>-->
         <dependency>
             <groupId>com.querydsl</groupId>
@@ -105,8 +97,8 @@
                     <jdbcPassword>${jdbc.password}</jdbcPassword>
                     <schemaPattern>${jdbc.schema}</schemaPattern>
                     <schemaToPackage>true</schemaToPackage>
-                    <packageName>com.saber.orderservice.models.command</packageName>
-                    <beanPackageName>com.saber.orderservice.models.command.</beanPackageName>
+                    <packageName>com.saber.inventoryservice.models.command</packageName>
+                    <beanPackageName>com.saber.inventoryservice.models.command.</beanPackageName>
                     <targetFolder>target/generated-sources/sql</targetFolder>
                     <beansTargetFolder>target/generated-sources/sql</beansTargetFolder>
                     <exportAll>false</exportAll>
