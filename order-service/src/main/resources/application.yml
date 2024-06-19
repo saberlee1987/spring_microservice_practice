@@ -48,7 +48,9 @@ service:
     version: 'version1.0.0-1403/03/27'
     title: 'order service'
     description: 'order service'
-
+  api-gateway:
+    host: localhost
+    port: 8760
 springdoc:
   swagger-ui:
     display-request-duration: true
@@ -57,3 +59,9 @@ springdoc:
     path: /swagger-ui.html
   api-docs:
     path: ${service.baseUrl}/v3/api-docs
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    appname: ${spring.application.name}

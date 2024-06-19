@@ -1,6 +1,6 @@
 package com.saber.productservice.controllers;
 
-import com.saber.productservice.dto.ErrorResponseDto;
+import com.saber.dto.ErrorResponseDto;
 import com.saber.productservice.dto.ProductRequestDto;
 import com.saber.productservice.dto.ProductResponse;
 import com.saber.productservice.model.Product;

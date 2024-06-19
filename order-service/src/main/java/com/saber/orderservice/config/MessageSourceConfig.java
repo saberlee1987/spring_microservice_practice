@@ -9,6 +9,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.util.StringUtils;
 
 import java.nio.charset.StandardCharsets;
+
 @Configuration
 public class MessageSourceConfig extends MessageSourceAutoConfiguration {
     @Bean

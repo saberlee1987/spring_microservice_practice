@@ -9,10 +9,13 @@ import org.apache.hc.client5.http.socket.ConnectionSocketFactory;
 import org.apache.hc.client5.http.socket.PlainConnectionSocketFactory;
 import org.apache.hc.core5.http.config.Registry;
 import org.apache.hc.core5.http.config.RegistryBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,6 +34,8 @@ public class RestTemplateConfig {
     private Integer connectionPerRoute;
 
     @Bean
+    @LoadBalanced
+    @Primary
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder){
         //https://howtodoinjava.com/spring-boot2/resttemplate/resttemplate-httpclient-java-config/
         Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder

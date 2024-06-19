@@ -1,5 +1,6 @@
 package com.saber.orderservice.services.impl;
 
+import com.saber.dto.BusinessException;
 import com.saber.orderservice.dto.*;
 import com.saber.orderservice.mapper.OrderLineItemMapper;
 import com.saber.orderservice.mapper.OrderMapper;
@@ -11,15 +12,16 @@ import com.saber.orderservice.repositories.command.OrderLineItemCmdRepository;
 import com.saber.orderservice.repositories.query.OrderQueryRepository;
 import com.saber.orderservice.services.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.List;
 
 @Service
@@ -59,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 
     private void checkExistProductInStock(List<OrderLineItemRequestDto> orderLineItems) {
         List<String> skuCodes = orderLineItems.stream().map(OrderLineItemRequestDto::getSkuCode).toList();
-        String url = "http://localhost:9602/api/inventory";
+        String url = "http://inventory-service/api/inventory";
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
         url = uriBuilder.queryParam("skuCodes", skuCodes).toUriString();
         ResponseEntity<InventoryResponseDto> responseEntity = restTemplate.exchange(url,

@@ -1,6 +1,6 @@
 package com.saber.inventoryservice.services.impl;
 
-import com.saber.inventoryservice.dto.BusinessException;
+import com.saber.dto.BusinessException;
 import com.saber.inventoryservice.dto.InventoryDto;
 import com.saber.inventoryservice.dto.InventoryRequestDto;
 import com.saber.inventoryservice.dto.InventoryResponse;
@@ -12,7 +12,6 @@ import com.saber.inventoryservice.repositories.query.InventoryQueryRepository;
 import com.saber.inventoryservice.services.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.ArrayList;

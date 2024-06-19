@@ -1,4 +1,4 @@
-package com.saber.orderservice.dto;
+package com.saber.dto;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Data;

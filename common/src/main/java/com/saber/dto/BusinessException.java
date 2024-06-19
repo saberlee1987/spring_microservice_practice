@@ -1,4 +1,4 @@
-package com.saber.productservice.dto;
+package com.saber.dto;
 
 public class BusinessException extends RuntimeException {
     public BusinessException() {

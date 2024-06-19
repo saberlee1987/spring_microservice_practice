@@ -1,6 +1,6 @@
 package com.saber.orderservice.controllers;
 
-import com.saber.orderservice.dto.ErrorResponseDto;
+import com.saber.dto.ErrorResponseDto;
 import com.saber.orderservice.dto.OrderDto;
 import com.saber.orderservice.dto.OrderRequestDto;
 import com.saber.orderservice.dto.OrderResponse;

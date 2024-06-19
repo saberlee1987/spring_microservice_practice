@@ -1,4 +1,4 @@
-package com.saber.inventoryservice.dto;
+package com.saber.dto;
 
 import lombok.Data;
 

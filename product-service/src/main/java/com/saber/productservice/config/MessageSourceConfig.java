@@ -1,4 +1,4 @@
-package com.saber.inventoryservice.config;
+package com.saber.productservice.config;
 
 import org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.MessageSourceProperties;

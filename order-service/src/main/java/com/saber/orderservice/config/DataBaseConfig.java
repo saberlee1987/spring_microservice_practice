@@ -17,8 +17,6 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DataBaseConfig {
-
-
     @Bean
     public SQLQueryFactory sqlQueryFactory(DataSource dataSource) {
         SpringConnectionProvider provider = new SpringConnectionProvider(dataSource);
@@ -27,7 +25,6 @@ public class DataBaseConfig {
         configuration.register(new TimestampType());
         return new SQLQueryFactory(configuration, provider);
     }
-
     @Bean
     public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
         return new JPAQueryFactory(entityManager);

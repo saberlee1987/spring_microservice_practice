@@ -1,13 +1,13 @@
-package com.saber.productservice;
+package com.saber.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication(scanBasePackages = "com.saber")
+@SpringBootApplication
 @EnableDiscoveryClient
-public class ProductServiceApplication {
+public class ApiGatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class);
+        SpringApplication.run(ApiGatewayApplication.class,args);
     }
 }

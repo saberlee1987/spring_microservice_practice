@@ -1,0 +1,25 @@
+server:
+  port: 8761
+  tomcat:
+    accesslog:
+      enabled: true
+      encoding: UTF-8
+    connection-timeout: 10000
+    max-connections: 10000
+    threads:
+      max: 3000
+      min-spare: 100
+
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}/eureka/
+  instance:
+    appname: ${spring.application.name}
+    hostname: localhost

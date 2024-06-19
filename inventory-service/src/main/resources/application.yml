@@ -12,7 +12,7 @@ server:
 
 spring:
   application:
-    name: order-service
+    name: inventory-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test2
@@ -42,7 +42,9 @@ service:
     version: 'version1.0.0-1403/03/29'
     title: 'inventory service'
     description: 'inventory service'
-
+  api-gateway:
+    host: localhost
+    port: 8760
 springdoc:
   swagger-ui:
     display-request-duration: true
@@ -51,3 +53,9 @@ springdoc:
     path: /swagger-ui.html
   api-docs:
     path: ${service.baseUrl}/v3/api-docs
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    appname: ${spring.application.name}
