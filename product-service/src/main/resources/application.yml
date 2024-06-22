@@ -37,6 +37,22 @@ springdoc:
     display-operation-id: true
     tags-sorter: alpha
     path: /swagger-ui.html
+  #    oauth:
+  #      app-name: saber-client
+  #      client-id: saber-client
+  #      realm: saber66
+  #      client-secret: 73b6e1da-d0ef-474c-97ae-d1c4438a7535
+  #      scopes:
+  #        - "openid"
+  #        - "read"
+  #        - "write"
+  #      tags-sorter: alpha
+  oAuthFlow:
+    authorizationUrl: http://localhost:7080/auth/realms/saber66/protocol/openid-connect/auth
+    tokenUrl: http://localhost:7080/auth/realms/saber66/protocol/openid-connect/token
+    use-pkce-with-authorization-code-grant: true
+
+
   api-docs:
     path: ${service.baseUrl}/v3/api-docs
 eureka:

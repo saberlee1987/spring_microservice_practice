@@ -62,6 +62,14 @@ spring:
           predicates:
             - Path=/api/inventory/v3/api-docs
 
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:7080/auth/realms/saber66
+          jwk-set-uri: http://localhost:7080/auth/realms/saber66/protocol/openid-connect/certs
+
 logging:
   level:
     root: info
@@ -88,6 +96,19 @@ springdoc:
         name: 'order service'
       - url: http://localhost:${server.port}/api/inventory/v3/api-docs
         name: 'inventory service'
+    oauth:
+      app-name: saber-client
+      client-id: saber-client
+      realm: saber66
+      client-secret: 73b6e1da-d0ef-474c-97ae-d1c4438a7535
+      scopes:
+        - "openid"
+        - "read"
+        - "write"
+  oAuthFlow:
+    authorizationUrl: http://localhost:7080/auth/realms/saber66/protocol/openid-connect/auth
+    tokenUrl: http://localhost:7080/auth/realms/saber66/protocol/openid-connect/token
+    use-pkce-with-authorization-code-grant: true
   api-docs:
     groups:
       enabled: true
@@ -97,3 +118,22 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     appname: ${spring.application.name}
+
+hawtio:
+  authenticationEnabled: false
+management:
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+      sla:
+        "[http.server.requests]": 10ms, 100ms
+      percentiles:
+        "[http.server.requests]": 0.5, 0.75, 0.95, 0.98, 0.99, 0.999, 1.0
+    tags:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      base-path: /actuators/api-gateway
+      exposure:
+        include: '*'
