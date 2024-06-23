@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 @RestControllerAdvice
 @Slf4j
@@ -70,6 +71,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Error for request url {}", request.getRequestURL());
         ErrorResponseDto errorResponseDto = new ErrorResponseDto();
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
+        errorResponseDto.setCode(status.value());
+        errorResponseDto.setMessage(status.getReasonPhrase());
+        errorResponseDto.setOriginalMessage(String.format("{\"code\":\"%s\",\"message\":\"%s\"}"
+                , status.value(), ex.getMessage()));
+        log.error("Error ==> {}", errorResponseDto);
+        return ResponseEntity.status(status).body(errorResponseDto);
+    }
+
+    @ExceptionHandler(value = TimeoutException.class)
+    public ResponseEntity<ErrorResponseDto> handleTimeLimiterException(TimeoutException ex,
+                                                                       HttpServletRequest request) {
+        log.error("Error for request url {}", request.getRequestURL());
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto();
+        HttpStatus status = HttpStatus.GATEWAY_TIMEOUT;
         errorResponseDto.setCode(status.value());
         errorResponseDto.setMessage(status.getReasonPhrase());
         errorResponseDto.setOriginalMessage(String.format("{\"code\":\"%s\",\"message\":\"%s\"}"

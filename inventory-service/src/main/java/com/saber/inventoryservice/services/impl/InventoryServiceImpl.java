@@ -11,6 +11,8 @@ import com.saber.inventoryservice.repositories.command.InventoryCommandRepositor
 import com.saber.inventoryservice.repositories.query.InventoryQueryRepository;
 import com.saber.inventoryservice.services.InventoryService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -19,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class InventoryServiceImpl implements InventoryService {
 
     private final InventoryQueryRepository inventoryQueryRepository;
@@ -38,7 +41,11 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
+//    @SneakyThrows
     public List<InventoryResponse> isInStock(List<String> skuCodes) {
+//        log.info("wait start");
+        //Thread.sleep(3000);
+//        log.info("wait end");
         List<Inventory> inventories = inventoryQueryRepository.findAllBySkuCodeIn(skuCodes);
         List<InventoryResponse> inventoryResponses = new ArrayList<>();
         InventoryResponse inventoryResponse = new InventoryResponse();
