@@ -6,6 +6,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.commons.lang3.StringUtils;
 import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinAutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.web.embedded.netty.NettyReactiveWebServerFactory;
 import org.springframework.boot.web.embedded.netty.NettyServerCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +24,7 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @Configuration
+@AutoConfigureBefore(ZipkinAutoConfiguration.class)
 public class AppConfig {
     @Value(value = "${server.netty.threads}")
     private Integer threads;
