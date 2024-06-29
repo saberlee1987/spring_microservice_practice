@@ -13,11 +13,6 @@ server:
 spring:
   application:
     name: order-service
-  zipkin:
-    base-url: http://localhost:9411
-  sleuth:
-    sampler:
-      probability: 1.0
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test2
@@ -85,27 +80,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     appname: ${spring.application.name}
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-
-  metrics:
-    distribution:
-      percentiles-histogram:
-        "[http.server.requests]": true
-      sla:
-        "[http.server.requests]": 10ms, 100ms
-      percentiles:
-        "[http.server.requests]": 0.5, 0.75, 0.95, 0.98, 0.99, 0.999, 1.0
-    tags:
-      application: ${spring.application.name}
-  endpoints:
-    web:
-      base-path: /actuators/order-service
-      exposure:
-        include: '*'
-
 
 #resilience4j properties
 resilience4j:
@@ -130,3 +104,26 @@ resilience4j:
         wait-duration-in-open-state:
                 seconds: 5
         automatic-transition-from-open-to-half-open-enabled: true
+
+management:
+  zipkin:
+    tracing:
+      connect-timeout: 10000
+      encoding: json
+      read-timeout: 10000
+      endpoint: http://localhost:9411
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+      sla:
+        "[http.server.requests]": 10ms, 100ms
+      percentiles:
+        "[http.server.requests]": 0.5, 0.75, 0.95, 0.98, 0.99, 0.999, 1.0
+    tags:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      base-path: /actuators/${spring.application.name}
+      exposure:
+        include: '*'
